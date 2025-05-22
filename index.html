@@ -3,71 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>I Still Look Up - JNSP</title>
+  <title>JNSP - I Still Look Up</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to top, #87ceeb, #ffffff);
-      background-attachment: fixed;
-      color: #333;
-      text-align: center;
-      padding: 2rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-      color: #444;
-      margin-top: 2rem;
-    }
-    .lyrics {
-      max-width: 800px;
-      margin: auto;
-      white-space: pre-line;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 1rem;
-      border-radius: 10px;
-    }
-    a {
-      display: inline-block;
-      margin-top: 1.5rem;
-      background: #007BFF;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
       color: white;
-      padding: 0.7rem 1.5rem;
-      text-decoration: none;
-      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
     }
-    a:hover {
-      background: #0056b3;
+
+    header {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 40px;
+    }
+
+    audio {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .lyrics {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 30px auto;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <h1>I Still Look Up</h1>
-  <h2>by JNSP</h2>
+  <header>
+    <h1>JNSP</h1>
+    <h2>I Still Look Up</h2>
+  </header>
 
-  <a href="https://youtube.com" target="_blank">Watch the Video</a>
+  <section class="audio-player">
+    <audio controls>
+      <source src="I_Still_Look_Up.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </section>
 
-  <div class="lyrics">
-    I feel so alone, this sadness won’t fade<br>
-    Each day a battle, but I keep the faith<br>
-    I cry, I pray, I bleed, I run<br>
-    Still I walk on, still I look up
+  <section class="lyrics">
+    <h2>Lyrics</h2>
+    <p>
+      I cry, I run, I bleed,
+      I fight this storm inside of me.
+      I pray, I fall, I scream,
+      Still hoping for some peace to see.
 
-    I’m waiting for a sign, a loving embrace<br>
-    I see beauty in all that He made<br>
-    I’m in awe of the sky, the wind, the light<br>
-    His love, His pain, His sacrifice
+      I walk, I groan, I try,
+      I look for light in darkest sky.
+      I wait, I trust, I love,
+      I still look up to what's above.
 
-    So I hope, I trust, I beg and plead<br>
-    Guide me, hold me, set me free<br>
-    Teach me love, forgiveness, grace<br>
-    Keep me close in Your embrace
+      I see the beauty in the rain,
+      I feel the wind that knows my pain.
+      The trees, the stars, the silent dove,
+      All whisper truth, and endless love.
 
-    I still look up...
-  </div>
+      Help me, save me, guide my way,
+      Teach me love and how to stay.
+      I still look up, I still believe,
+      In something greater I can't see.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 JNSP Music – www.jnspmusic.com
+  </footer>
 </body>
 </html>
