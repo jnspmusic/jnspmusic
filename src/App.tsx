@@ -440,7 +440,7 @@ const App = () => {
           <div className="flex items-center justify-center space-x-2 mb-4">
             <span className="text-xl font-bold text-blue-200">JNSP</span>
           </div>
-          <p className="text-blue-200/40 text-sm">&copy; 2025 JNSP Music. {t.footer.copyright}</p>
+          <p className="text-blue-200/40 text-sm">&copy; 2026 JNSP Music. {t.footer.copyright}</p>
         </div>
       </footer>
     </div>
