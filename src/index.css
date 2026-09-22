@@ -65,6 +65,8 @@ img { display: block; max-width: 100%; }
 .hero-art::before { content: ''; position: absolute; width: 78%; height: 78%; border-radius: 50%; background: conic-gradient(from 90deg, #181b24, #050609, #323847, #050609, #181b24); box-shadow: 0 40px 80px rgba(0,0,0,.5); animation: rotate 28s linear infinite; }
 .hero-art::after { content: ''; position: absolute; width: 18%; height: 18%; border: 2px solid rgba(199,255,46,.55); border-radius: 50%; background: #090a0d; }
 .hero-art > img { position: relative; z-index: 2; width: 55%; aspect-ratio: 1; object-fit: cover; box-shadow: 0 28px 70px rgba(0,0,0,.58); transform: rotate(-5deg); }
+.hero-preview-button { position: absolute; z-index: 5; width: 58px; height: 58px; display: grid; place-items: center; border: 0; border-radius: 50%; color: var(--ink); background: var(--acid); box-shadow: 0 14px 38px rgba(0,0,0,.46); opacity: .9; transition: opacity .2s, transform .2s, background .2s; }
+.hero-preview-button:hover, .hero-art.is-playing .hero-preview-button { opacity: 1; transform: scale(1.08); background: #dcff78; }
 .record-ring { position: absolute; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; }
 .ring-one { width: 91%; height: 91%; }
 .ring-two { width: 68%; height: 68%; }
@@ -85,10 +87,11 @@ img { display: block; max-width: 100%; }
 .release-art-wrap::before { content: ''; position: absolute; inset: -22px 22px 22px -22px; border: 1px solid #b9bbb4; }
 .release-art-wrap img { position: relative; width: 100%; aspect-ratio: 1; object-fit: cover; box-shadow: 25px 35px 70px rgba(18,20,24,.19); }
 .art-caption { position: absolute; bottom: 1rem; left: -3.7rem; color: #73766f; font-size: .62rem; font-weight: 700; letter-spacing: .16em; transform: rotate(-90deg); }
-.preview-overlay { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .9rem; color: white; background: rgba(7,8,11,.54); opacity: 0; transition: opacity .25s; }
-.preview-cover:hover .preview-overlay, .preview-cover:focus-visible .preview-overlay, .preview-cover.is-playing .preview-overlay { opacity: 1; }
+.preview-overlay { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .9rem; color: white; background: transparent; opacity: 1; transition: background .25s; }
+.preview-cover:hover .preview-overlay, .preview-cover:focus-visible .preview-overlay, .preview-cover.is-playing .preview-overlay { background: rgba(7,8,11,.54); }
 .preview-icon, .track-play { width: 64px; height: 64px; display: grid; place-items: center; border-radius: 50%; color: var(--ink); background: var(--acid); box-shadow: 0 12px 35px rgba(0,0,0,.35); }
-.preview-overlay > span:last-child { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.preview-overlay > span:last-child { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: 0; transition: opacity .25s; }
+.preview-cover:hover .preview-overlay > span:last-child, .preview-cover:focus-visible .preview-overlay > span:last-child, .preview-cover.is-playing .preview-overlay > span:last-child { opacity: 1; }
 .release-content h2, .artist-copy h2, .connect h2, .manifesto h2, .catalog-heading h2 { margin: 0; font-family: Arial, Helvetica, sans-serif; letter-spacing: -.055em; line-height: .96; }
 .release-content h2 { font-size: clamp(3rem, 6.4vw, 7rem); }
 .release-content h2 em { color: var(--blue); font-style: normal; }

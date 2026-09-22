@@ -259,10 +259,22 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-art">
+          <div
+            className={`hero-art ${activeTrack === 'just-a-little-more-time' ? 'is-playing' : ''}`}
+            onPointerEnter={(event) => hoverPreview(event, 'just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
+            onPointerLeave={(event) => leavePreview(event, 'just-a-little-more-time')}
+          >
             <div className="record-ring ring-one" />
             <div className="record-ring ring-two" />
             <img src="/newpic.png" alt="Just a Little More Time — JNSP single artwork" />
+            <button
+              className="hero-preview-button"
+              type="button"
+              onClick={() => togglePreview('just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
+              aria-label={activeTrack === 'just-a-little-more-time' ? `${t.previewPause}: Just a Little More Time` : `${t.previewPlay}: Just a Little More Time`}
+            >
+              {activeTrack === 'just-a-little-more-time' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}
+            </button>
             <div className="now-playing">
               <span className="sound-bars" aria-hidden="true"><i /><i /><i /><i /></span>
               <span><small>{t.latest}</small>Just a Little More Time</span>
