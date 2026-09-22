@@ -48,7 +48,7 @@ const tracks: Track[] = [
   },
   {
     id: 'in-my-world',
-    title: 'In My World (Rise Up)',
+    title: 'In My World',
     subtitle: 'Remix · Remastered',
     cover: '/media/in-my-world.webp',
     preview: '/media/in-my-world-preview.mp3',
@@ -266,7 +266,7 @@ function App() {
           >
             <div className="record-ring ring-one" />
             <div className="record-ring ring-two" />
-            <img src="/newpic.png" alt="Just a Little More Time — JNSP single artwork" />
+            <img src="/media/just-a-little-more-time.webp" alt="Just a Little More Time — JNSP single artwork" />
             <button
               className="hero-preview-button"
               type="button"
@@ -294,7 +294,7 @@ function App() {
             onClick={() => togglePreview('just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
             aria-label={activeTrack === 'just-a-little-more-time' ? `${t.previewPause}: Just a Little More Time` : `${t.previewPlay}: Just a Little More Time`}
           >
-            <img src="/newpic.png" alt="Cover artwork for Just a Little More Time by JNSP" loading="lazy" />
+            <img src="/media/just-a-little-more-time.webp" alt="Cover artwork for Just a Little More Time by JNSP" loading="lazy" />
             <span className="art-caption">JNSP — 2026</span>
             <span className="preview-overlay">
               <span className="preview-icon">{activeTrack === 'just-a-little-more-time' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</span>
