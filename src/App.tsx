@@ -374,7 +374,7 @@ function App() {
             </a>
           </div>
           <div className="artist-visual">
-            <img src="/media/jnsp-turntable.webp" alt="JNSP vinyl turntable" loading="lazy" />
+            <img src="/media/jnsp-radio-cassette.webp" alt="Vintage JNSP radio cassette recorder" loading="lazy" />
             <div className="artist-stamp"><Radio size={28} /><span>INDEPENDENT<br />ARTIST</span></div>
           </div>
         </section>
