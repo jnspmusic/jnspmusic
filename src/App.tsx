@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -7,6 +7,7 @@ import {
   Mail,
   Menu,
   Music2,
+  Pause,
   Play,
   Radio,
   X,
@@ -15,6 +16,14 @@ import {
 
 type Language = 'en' | 'fr';
 
+type Track = {
+  id: string;
+  title: string;
+  subtitle: string;
+  cover: string;
+  preview: string;
+};
+
 const links = {
   youtube: 'https://music.youtube.com/channel/UCFAKDiOFbZkd9jhMRYbP6NQ?feature=shared',
   spotify: 'https://open.spotify.com/artist/25qqFcycQizw6u2Xb80tnu?si=IvZcME41Q465arofPwpP7Q',
@@ -22,10 +31,34 @@ const links = {
   email: 'jnsp@jnspmusic.com',
 };
 
+const tracks: Track[] = [
+  {
+    id: 'wake-up',
+    title: 'Wake Up',
+    subtitle: 'Remastered',
+    cover: '/media/wake-up.webp',
+    preview: '/media/wake-up-preview.mp3',
+  },
+  {
+    id: 'life',
+    title: 'LIFE',
+    subtitle: 'Original track',
+    cover: '/media/life.webp',
+    preview: '/media/life-preview.mp3',
+  },
+  {
+    id: 'in-my-world',
+    title: 'In My World (Rise Up)',
+    subtitle: 'Remix · Remastered',
+    cover: '/media/in-my-world.webp',
+    preview: '/media/in-my-world-preview.mp3',
+  },
+];
+
 const copy = {
   en: {
     skip: 'Skip to content',
-    nav: { release: 'Release', story: 'Artist', connect: 'Connect' },
+    nav: { release: 'Music', story: 'Artist', connect: 'Connect' },
     heroKicker: 'Independent electronic artist · France',
     heroLineOne: 'EMOTION',
     heroLineTwo: 'IN MOTION.',
@@ -39,6 +72,13 @@ const copy = {
       'A melodic electronic track where nostalgic synths meet progressive energy. “Just a Little More Time” is about holding on to a moment before it disappears.',
     onSpotify: 'Play on Spotify',
     onYoutube: 'Play on YouTube Music',
+    preview: '30 sec preview',
+    previewPlay: 'Play preview',
+    previewPause: 'Pause preview',
+    hoverHint: 'Hover to listen · tap on mobile',
+    catalogEyebrow: 'More from JNSP',
+    catalogTitle: 'Enter the JNSP universe.',
+    catalogText: 'Move over a cover to hear a 30-second preview. On mobile, tap the cover.',
     soundTitle: 'Melody first. Always.',
     soundText:
       'JNSP creates electronic music driven by feeling: deep melodies, powerful basslines and a sense of movement that connects the club to something more personal.',
@@ -56,10 +96,19 @@ const copy = {
     follow: 'Follow the project',
     rights: 'All rights reserved.',
     noTracking: 'Independent music. No tracking cookies.',
+    privacyLink: 'Privacy Policy',
+    privacyTitle: 'Privacy Policy',
+    privacyUpdated: 'Last updated: September 2026',
+    privacyOne: 'This website does not place advertising cookies and does not use Google Analytics or any advertising tracker.',
+    privacyTwo: 'A simple visitor counter provided by Hits.sh is displayed at the bottom of the page. When it loads, this external service may receive technical information such as your IP address and browser data. It is used only to estimate the site’s general audience, with no advertising purpose.',
+    privacyThree: 'Audio previews and artwork are hosted directly on this website. Spotify, YouTube Music and Instagram receive information only if you choose to open one of their links.',
+    privacyFour: 'No registration is required. JNSP Music does not sell personal data, create visitor profiles or use information for targeted advertising.',
+    privacyContact: 'For any privacy question, contact',
+    closePrivacy: 'Close Privacy Policy',
   },
   fr: {
     skip: 'Aller au contenu',
-    nav: { release: 'Sortie', story: 'Artiste', connect: 'Contact' },
+    nav: { release: 'Musique', story: 'Artiste', connect: 'Contact' },
     heroKicker: 'Artiste électronique indépendant · France',
     heroLineOne: 'L’ÉMOTION',
     heroLineTwo: 'EN MOUVEMENT.',
@@ -73,6 +122,13 @@ const copy = {
       'Un titre électronique mélodique où les synthés nostalgiques rencontrent une énergie progressive. « Just a Little More Time » parle de cet instant que l’on voudrait retenir avant qu’il disparaisse.',
     onSpotify: 'Écouter sur Spotify',
     onYoutube: 'Écouter sur YouTube Music',
+    preview: 'Extrait de 30 s',
+    previewPlay: 'Lire l’extrait',
+    previewPause: 'Mettre en pause',
+    hoverHint: 'Survolez pour écouter · touchez sur mobile',
+    catalogEyebrow: 'Plus de titres JNSP',
+    catalogTitle: 'Entrez dans l’univers JNSP.',
+    catalogText: 'Passez sur une pochette pour entendre un extrait de 30 secondes. Sur mobile, touchez la pochette.',
     soundTitle: 'La mélodie d’abord. Toujours.',
     soundText:
       'JNSP crée une musique électronique guidée par l’émotion : mélodies profondes, basses puissantes et mouvement permanent, entre énergie du club et expérience intime.',
@@ -90,12 +146,25 @@ const copy = {
     follow: 'Suivre le projet',
     rights: 'Tous droits réservés.',
     noTracking: 'Musique indépendante. Aucun cookie de suivi.',
+    privacyLink: 'Politique de confidentialité',
+    privacyTitle: 'Politique de confidentialité',
+    privacyUpdated: 'Dernière mise à jour : septembre 2026',
+    privacyOne: 'Ce site ne dépose aucun cookie publicitaire et n’utilise ni Google Analytics ni aucun traceur publicitaire.',
+    privacyTwo: 'Un compteur de visites simple fourni par Hits.sh est affiché en bas de page. Lors de son chargement, ce service externe peut recevoir des informations techniques comme votre adresse IP et les données de votre navigateur. Il sert uniquement à estimer l’audience générale du site, sans finalité publicitaire.',
+    privacyThree: 'Les extraits audio et les pochettes sont hébergés directement sur ce site. Spotify, YouTube Music et Instagram reçoivent des informations uniquement si vous choisissez d’ouvrir l’un de leurs liens.',
+    privacyFour: 'Aucune inscription n’est demandée. JNSP Music ne vend aucune donnée personnelle, ne crée aucun profil de visiteur et n’utilise aucune information pour de la publicité ciblée.',
+    privacyContact: 'Pour toute question sur la confidentialité, contactez',
+    closePrivacy: 'Fermer la politique de confidentialité',
   },
 };
 
 function App() {
   const [language, setLanguage] = useState<Language>('en');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeTrack, setActiveTrack] = useState<string | null>(null);
+  const [blockedTrack, setBlockedTrack] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const privacyDialogRef = useRef<HTMLDialogElement>(null);
   const t = copy[language];
 
   useEffect(() => {
@@ -103,6 +172,49 @@ function App() {
   }, [language]);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const startPreview = async (id: string, source: string, fromHover = false) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (!audio.src.endsWith(source)) {
+      audio.src = source;
+      audio.load();
+    }
+
+    audio.currentTime = 0;
+    try {
+      await audio.play();
+      setActiveTrack(id);
+      setBlockedTrack(null);
+    } catch {
+      if (fromHover) setBlockedTrack(id);
+    }
+  };
+
+  const stopPreview = (id?: string) => {
+    const audio = audioRef.current;
+    if (!audio || (id && activeTrack !== id)) return;
+    audio.pause();
+    audio.currentTime = 0;
+    setActiveTrack(null);
+  };
+
+  const togglePreview = (id: string, source: string) => {
+    if (activeTrack === id) stopPreview(id);
+    else void startPreview(id, source);
+  };
+
+  const hoverPreview = (event: React.PointerEvent, id: string, source: string) => {
+    if (event.pointerType === 'mouse') void startPreview(id, source, true);
+  };
+
+  const leavePreview = (event: React.PointerEvent, id: string) => {
+    if (event.pointerType === 'mouse') stopPreview(id);
+  };
+
+  const openPrivacy = () => privacyDialogRef.current?.showModal();
+  const closePrivacy = () => privacyDialogRef.current?.close();
 
   return (
     <div className="site-shell">
@@ -114,7 +226,7 @@ function App() {
         </a>
 
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
-          <a href="#release" onClick={closeMenu}>{t.nav.release}</a>
+          <a href="#music" onClick={closeMenu}>{t.nav.release}</a>
           <a href="#artist" onClick={closeMenu}>{t.nav.story}</a>
           <a href="#connect" onClick={closeMenu}>{t.nav.connect}</a>
         </nav>
@@ -132,6 +244,7 @@ function App() {
       </header>
 
       <main id="main">
+        <audio ref={audioRef} preload="none" onEnded={() => setActiveTrack(null)} />
         <section className="hero" id="top">
           <div className="hero-grid" aria-hidden="true" />
           <div className="hero-copy">
@@ -161,10 +274,21 @@ function App() {
 
         <section className="release section" id="release">
           <div className="section-number">01</div>
-          <div className="release-art-wrap">
+          <button
+            className={`release-art-wrap preview-cover ${activeTrack === 'just-a-little-more-time' ? 'is-playing' : ''}`}
+            type="button"
+            onPointerEnter={(event) => hoverPreview(event, 'just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
+            onPointerLeave={(event) => leavePreview(event, 'just-a-little-more-time')}
+            onClick={() => togglePreview('just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
+            aria-label={activeTrack === 'just-a-little-more-time' ? `${t.previewPause}: Just a Little More Time` : `${t.previewPlay}: Just a Little More Time`}
+          >
             <img src="/newpic.png" alt="Cover artwork for Just a Little More Time by JNSP" loading="lazy" />
             <span className="art-caption">JNSP — 2026</span>
-          </div>
+            <span className="preview-overlay">
+              <span className="preview-icon">{activeTrack === 'just-a-little-more-time' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</span>
+              <span>{blockedTrack === 'just-a-little-more-time' ? t.previewPlay : t.hoverHint}</span>
+            </span>
+          </button>
           <div className="release-content">
             <p className="eyebrow"><span />{t.newSingle}</p>
             <h2>Just a Little<br /><em>More Time</em></h2>
@@ -179,6 +303,42 @@ function App() {
           </div>
         </section>
 
+        <section className="catalog section" id="music">
+          <div className="section-number">02</div>
+          <div className="catalog-heading">
+            <div>
+              <p className="eyebrow"><span />{t.catalogEyebrow}</p>
+              <h2>{t.catalogTitle}</h2>
+            </div>
+            <p>{t.catalogText}</p>
+          </div>
+          <div className="track-grid">
+            {tracks.map((track, index) => (
+              <article
+                className={`track-card ${activeTrack === track.id ? 'is-playing' : ''}`}
+                key={track.id}
+                onPointerEnter={(event) => hoverPreview(event, track.id, track.preview)}
+                onPointerLeave={(event) => leavePreview(event, track.id)}
+              >
+                <button
+                  className="track-cover"
+                  type="button"
+                  onClick={() => togglePreview(track.id, track.preview)}
+                  aria-label={activeTrack === track.id ? `${t.previewPause}: ${track.title}` : `${t.previewPlay}: ${track.title}`}
+                >
+                  <img src={track.cover} alt={`${track.title} — JNSP cover artwork`} loading="lazy" />
+                  <span className="track-play">{activeTrack === track.id ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</span>
+                  <span className="track-preview-label">{blockedTrack === track.id ? t.previewPlay : t.preview}</span>
+                </button>
+                <div className="track-info">
+                  <span>0{index + 1}</span>
+                  <div><h3>{track.title}</h3><p>{track.subtitle}</p></div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="manifesto">
           <div className="manifesto-word" aria-hidden="true">FEEL</div>
           <div className="manifesto-content">
@@ -189,7 +349,7 @@ function App() {
         </section>
 
         <section className="artist section" id="artist">
-          <div className="section-number">02</div>
+          <div className="section-number">03</div>
           <div className="artist-copy">
             <p className="eyebrow"><span />{t.artistEyebrow}</p>
             <h2>{t.artistTitle}</h2>
@@ -226,9 +386,33 @@ function App() {
         </div>
         <div className="footer-meta">
           <span>© {new Date().getFullYear()} JNSP Music. {t.rights}</span>
-          <span>{t.noTracking}</span>
+          <span className="footer-privacy"><button type="button" onClick={openPrivacy}>{t.privacyLink}</button><span>{t.noTracking}</span></span>
+        </div>
+        <div className="visitor-counter" aria-label="Visitor count">
+          <a href="https://hits.sh/www.jnspmusic.com/" target="_blank" rel="noreferrer">
+            <img alt="Visitor count" src="https://hits.sh/www.jnspmusic.com.svg?label=&style=flat&color=747771&labelColor=07080b" />
+          </a>
         </div>
       </footer>
+
+      <dialog
+        className="privacy-dialog"
+        ref={privacyDialogRef}
+        aria-labelledby="privacy-title"
+        onClick={(event) => { if (event.target === event.currentTarget) closePrivacy(); }}
+      >
+        <div className="privacy-dialog-content">
+          <button className="privacy-close" type="button" onClick={closePrivacy} aria-label={t.closePrivacy}>×</button>
+          <p className="eyebrow"><span />JNSP MUSIC</p>
+          <h2 id="privacy-title">{t.privacyTitle}</h2>
+          <p className="privacy-updated">{t.privacyUpdated}</p>
+          <p>{t.privacyOne}</p>
+          <p>{t.privacyTwo}</p>
+          <p>{t.privacyThree}</p>
+          <p>{t.privacyFour}</p>
+          <p>{t.privacyContact} <a href={`mailto:${links.email}`}>{links.email}</a>.</p>
+        </div>
+      </dialog>
     </div>
   );
 }
