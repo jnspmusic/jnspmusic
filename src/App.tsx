@@ -9,7 +9,6 @@ import {
   Music2,
   Pause,
   Play,
-  Radio,
   X,
   Youtube,
 } from 'lucide-react';
@@ -375,7 +374,6 @@ function App() {
           </div>
           <div className="artist-visual">
             <img src="/media/jnsp-dancefloor-booth.webp" alt="JNSP analog DJ booth overlooking an eighties dance floor" loading="lazy" />
-            <div className="artist-stamp"><Radio size={28} /><span>INDEPENDENT<br />ARTIST</span></div>
           </div>
         </section>
 
