@@ -90,8 +90,6 @@ img { display: block; max-width: 100%; }
 .preview-overlay { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .9rem; color: white; background: transparent; opacity: 1; transition: background .25s; }
 .preview-cover:hover .preview-overlay, .preview-cover:focus-visible .preview-overlay, .preview-cover.is-playing .preview-overlay { background: rgba(7,8,11,.54); }
 .preview-icon, .track-play { width: 64px; height: 64px; display: grid; place-items: center; border-radius: 50%; color: var(--ink); background: var(--acid); box-shadow: 0 12px 35px rgba(0,0,0,.35); }
-.preview-overlay > span:last-child { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: 0; transition: opacity .25s; }
-.preview-cover:hover .preview-overlay > span:last-child, .preview-cover:focus-visible .preview-overlay > span:last-child, .preview-cover.is-playing .preview-overlay > span:last-child { opacity: 1; }
 .release-content h2, .artist-copy h2, .connect h2, .manifesto h2, .catalog-heading h2 { margin: 0; font-family: Arial, Helvetica, sans-serif; letter-spacing: -.055em; line-height: .96; }
 .release-content h2 { font-size: clamp(3rem, 6.4vw, 7rem); }
 .release-content h2 em { color: var(--blue); font-style: normal; }
@@ -207,7 +205,7 @@ footer { padding: 3.4rem clamp(1.25rem, 4vw, 4.5rem); display: grid; grid-templa
   .track-play, .track-preview-label { opacity: 1; }
   .artist-text { grid-template-columns: 1fr; gap: .5rem; }
   .artist-visual { width: calc(100% - 1rem); min-height: 460px; }
-  .artist-visual img { min-height: 460px; }
+  .artist-visual img { min-height: 460px; object-position: 43% 54%; }
   footer { grid-template-columns: 1fr; }
   .footer-socials { justify-content: flex-start; gap: 1rem; }
   .footer-meta { display: grid; }

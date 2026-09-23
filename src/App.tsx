@@ -297,7 +297,6 @@ function App() {
             <span className="art-caption">JNSP — 2026</span>
             <span className="preview-overlay">
               <span className="preview-icon">{activeTrack === 'just-a-little-more-time' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</span>
-              <span>{blockedTrack === 'just-a-little-more-time' ? t.previewPlay : t.hoverHint}</span>
             </span>
           </button>
           <div className="release-content">
