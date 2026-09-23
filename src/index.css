@@ -205,7 +205,7 @@ footer { padding: 3.4rem clamp(1.25rem, 4vw, 4.5rem); display: grid; grid-templa
   .track-play, .track-preview-label { opacity: 1; }
   .artist-text { grid-template-columns: 1fr; gap: .5rem; }
   .artist-visual { width: calc(100% - 1rem); min-height: 460px; }
-  .artist-visual img { min-height: 460px; object-position: 43% 54%; }
+  .artist-visual img { min-height: 460px; object-position: 25% 54%; }
   footer { grid-template-columns: 1fr; }
   .footer-socials { justify-content: flex-start; gap: 1rem; }
   .footer-meta { display: grid; }
