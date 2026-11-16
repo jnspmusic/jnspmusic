@@ -104,7 +104,7 @@ img { display: block; max-width: 100%; }
 .catalog-heading { margin-bottom: clamp(3rem, 6vw, 5.5rem); display: grid; grid-template-columns: 1.25fr .75fr; align-items: end; gap: 3rem; }
 .catalog-heading h2 { max-width: 780px; font-size: clamp(3rem, 6.3vw, 7rem); }
 .catalog-heading > p { max-width: 470px; margin: 0 0 .5rem; color: #9da099; font-size: 1rem; line-height: 1.75; }
-.track-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2.2vw, 2.5rem); }
+.track-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2.2vw, 2.5rem); }
 .track-card { min-width: 0; }
 .track-cover { position: relative; width: 100%; padding: 0; overflow: hidden; border: 0; background: #141720; }
 .track-cover::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,8,11,.72), transparent 50%); opacity: .25; transition: opacity .25s; }

@@ -32,6 +32,13 @@ const links = {
 
 const tracks: Track[] = [
   {
+    id: 'just-a-little-more-time',
+    title: 'Just a Little More Time',
+    subtitle: 'Original track',
+    cover: '/media/just-a-little-more-time.webp',
+    preview: '/media/just-a-little-more-time-preview.mp3',
+  },
+  {
     id: 'wake-up',
     title: 'Wake Up',
     subtitle: 'Remastered',
@@ -68,7 +75,7 @@ const copy = {
     latest: 'Latest release',
     newSingle: 'New single',
     releaseText:
-      'A melodic electronic track where nostalgic synths meet progressive energy. “Just a Little More Time” is about holding on to a moment before it disappears.',
+      'A light left on, an empty hallway, and the hope of a return. “Hallway Light” explores absence and learning to let go, wrapped in nostalgic, 80s-inspired synths.',
     onSpotify: 'Play on Spotify',
     onYoutube: 'Play on YouTube Music',
     preview: '30 sec preview',
@@ -118,7 +125,7 @@ const copy = {
     latest: 'Dernière sortie',
     newSingle: 'Nouveau single',
     releaseText:
-      'Un titre électronique mélodique où les synthés nostalgiques rencontrent une énergie progressive. « Just a Little More Time » parle de cet instant que l’on voudrait retenir avant qu’il disparaisse.',
+      'Une lumière laissée allumée, un couloir vide et l’espoir d’un retour. « Hallway Light » raconte l’absence et l’apprentissage du lâcher-prise, dans une atmosphère de synthés nostalgiques inspirée des années 80.',
     onSpotify: 'Écouter sur Spotify',
     onYoutube: 'Écouter sur YouTube Music',
     preview: 'Extrait de 30 s',
@@ -259,24 +266,24 @@ function App() {
           </div>
 
           <div
-            className={`hero-art ${activeTrack === 'just-a-little-more-time' ? 'is-playing' : ''}`}
-            onPointerEnter={(event) => hoverPreview(event, 'just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
-            onPointerLeave={(event) => leavePreview(event, 'just-a-little-more-time')}
+            className={`hero-art ${activeTrack === 'hallway-light' ? 'is-playing' : ''}`}
+            onPointerEnter={(event) => hoverPreview(event, 'hallway-light', '/media/hallway-light-preview.mp3')}
+            onPointerLeave={(event) => leavePreview(event, 'hallway-light')}
           >
             <div className="record-ring ring-one" />
             <div className="record-ring ring-two" />
-            <img src="/media/just-a-little-more-time.webp" alt="Just a Little More Time — JNSP single artwork" />
+            <img src="/media/hallway-light.webp" alt="Hallway Light — JNSP single artwork" />
             <button
               className="hero-preview-button"
               type="button"
-              onClick={() => togglePreview('just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
-              aria-label={activeTrack === 'just-a-little-more-time' ? `${t.previewPause}: Just a Little More Time` : `${t.previewPlay}: Just a Little More Time`}
+              onClick={() => togglePreview('hallway-light', '/media/hallway-light-preview.mp3')}
+              aria-label={activeTrack === 'hallway-light' ? `${t.previewPause}: Hallway Light` : `${t.previewPlay}: Hallway Light`}
             >
-              {activeTrack === 'just-a-little-more-time' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}
+              {activeTrack === 'hallway-light' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}
             </button>
             <div className="now-playing">
               <span className="sound-bars" aria-hidden="true"><i /><i /><i /><i /></span>
-              <span><small>{t.latest}</small>Just a Little More Time</span>
+              <span><small>{t.latest}</small>Hallway Light</span>
             </div>
           </div>
 
@@ -286,22 +293,22 @@ function App() {
         <section className="release section" id="release">
           <div className="section-number">01</div>
           <button
-            className={`release-art-wrap preview-cover ${activeTrack === 'just-a-little-more-time' ? 'is-playing' : ''}`}
+            className={`release-art-wrap preview-cover ${activeTrack === 'hallway-light' ? 'is-playing' : ''}`}
             type="button"
-            onPointerEnter={(event) => hoverPreview(event, 'just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
-            onPointerLeave={(event) => leavePreview(event, 'just-a-little-more-time')}
-            onClick={() => togglePreview('just-a-little-more-time', '/media/just-a-little-more-time-preview.mp3')}
-            aria-label={activeTrack === 'just-a-little-more-time' ? `${t.previewPause}: Just a Little More Time` : `${t.previewPlay}: Just a Little More Time`}
+            onPointerEnter={(event) => hoverPreview(event, 'hallway-light', '/media/hallway-light-preview.mp3')}
+            onPointerLeave={(event) => leavePreview(event, 'hallway-light')}
+            onClick={() => togglePreview('hallway-light', '/media/hallway-light-preview.mp3')}
+            aria-label={activeTrack === 'hallway-light' ? `${t.previewPause}: Hallway Light` : `${t.previewPlay}: Hallway Light`}
           >
-            <img src="/media/just-a-little-more-time.webp" alt="Cover artwork for Just a Little More Time by JNSP" loading="lazy" />
+            <img src="/media/hallway-light.webp" alt="Cover artwork for Hallway Light by JNSP" loading="lazy" />
             <span className="art-caption">JNSP — 2026</span>
             <span className="preview-overlay">
-              <span className="preview-icon">{activeTrack === 'just-a-little-more-time' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</span>
+              <span className="preview-icon">{activeTrack === 'hallway-light' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}</span>
             </span>
           </button>
           <div className="release-content">
             <p className="eyebrow"><span />{t.newSingle}</p>
-            <h2>Just a Little<br /><em>More Time</em></h2>
+            <h2>Hallway<br /><em>Light</em></h2>
             <p>{t.releaseText}</p>
             <div className="genre-list" aria-label="Genres">
               <span>Progressive house</span><span>Trance</span><span>80s-inspired</span>
