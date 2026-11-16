@@ -267,7 +267,7 @@ function App() {
 
           <div
             className={`hero-art ${activeTrack === 'hallway-light' ? 'is-playing' : ''}`}
-            onPointerEnter={(event) => hoverPreview(event, 'hallway-light', '/media/hallway-light-preview.mp3')}
+            onPointerEnter={(event) => hoverPreview(event, 'hallway-light', '/media/hallway-light-preview.mp3?v=2')}
             onPointerLeave={(event) => leavePreview(event, 'hallway-light')}
           >
             <div className="record-ring ring-one" />
@@ -276,7 +276,7 @@ function App() {
             <button
               className="hero-preview-button"
               type="button"
-              onClick={() => togglePreview('hallway-light', '/media/hallway-light-preview.mp3')}
+              onClick={() => togglePreview('hallway-light', '/media/hallway-light-preview.mp3?v=2')}
               aria-label={activeTrack === 'hallway-light' ? `${t.previewPause}: Hallway Light` : `${t.previewPlay}: Hallway Light`}
             >
               {activeTrack === 'hallway-light' ? <Pause fill="currentColor" /> : <Play fill="currentColor" />}
@@ -295,9 +295,9 @@ function App() {
           <button
             className={`release-art-wrap preview-cover ${activeTrack === 'hallway-light' ? 'is-playing' : ''}`}
             type="button"
-            onPointerEnter={(event) => hoverPreview(event, 'hallway-light', '/media/hallway-light-preview.mp3')}
+            onPointerEnter={(event) => hoverPreview(event, 'hallway-light', '/media/hallway-light-preview.mp3?v=2')}
             onPointerLeave={(event) => leavePreview(event, 'hallway-light')}
-            onClick={() => togglePreview('hallway-light', '/media/hallway-light-preview.mp3')}
+            onClick={() => togglePreview('hallway-light', '/media/hallway-light-preview.mp3?v=2')}
             aria-label={activeTrack === 'hallway-light' ? `${t.previewPause}: Hallway Light` : `${t.previewPlay}: Hallway Light`}
           >
             <img src="/media/hallway-light.webp" alt="Cover artwork for Hallway Light by JNSP" loading="lazy" />
