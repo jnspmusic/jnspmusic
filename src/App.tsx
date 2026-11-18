@@ -32,6 +32,13 @@ const links = {
 
 const tracks: Track[] = [
   {
+    id: 'melodie',
+    title: 'Melodie',
+    subtitle: 'Instrumental',
+    cover: '/media/melodie.webp',
+    preview: '/media/melodie-preview.mp3',
+  },
+  {
     id: 'heartbeat',
     title: 'Heartbeat',
     subtitle: 'Instrumental',
