@@ -32,6 +32,13 @@ const links = {
 
 const tracks: Track[] = [
   {
+    id: 'heartbeat',
+    title: 'Heartbeat',
+    subtitle: 'Instrumental',
+    cover: '/media/heartbeat.webp',
+    preview: '/media/heartbeat-preview.mp3',
+  },
+  {
     id: 'just-a-little-more-time',
     title: 'Just a Little More Time',
     subtitle: 'Original track',
